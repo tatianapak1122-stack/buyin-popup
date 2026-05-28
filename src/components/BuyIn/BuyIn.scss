@@ -1,0 +1,457 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #666;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.buyin {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: clamp(16px, 4vw, 32px);
+  background:
+    radial-gradient(
+      ellipse 400px 80px at 50% 0%,
+      rgba(36, 190, 89, 0.95) 0%,
+      rgba(25, 150, 70, 0.55) 23%,
+      rgba(20, 95, 55, 0.28) 55%,
+      rgba(23, 25, 30, 0) 100%
+    ),
+    #17191e;
+  border-radius: 3px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+}
+
+.buyin__close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  border: 0;
+  background: transparent;
+  color: #c9ccd3;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.buyin__title {
+  margin: 0 0 26px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.buyin__radio-group {
+  margin-bottom: 16px;
+}
+
+.buyin__radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #f5f5f5;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  span {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #6d727d;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .radio-left {
+    border: 2px solid #6d727d;
+  }
+
+  .radio-right {
+    border: 2px solid #6d727d;
+  }
+
+  input:checked + span {
+    border-color: #00c65a;
+  }
+
+  input:checked + span::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background: #00c65a;
+    border-radius: 50%;
+  }
+}
+
+.buyin__divider {
+  height: 1px;
+  background: #30343b;
+  margin-bottom: 16px;
+}
+
+.buyin__row {
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  min-height: 28px;
+  font-size: 14px;
+}
+
+.buyin__label {
+  display: flex;
+  align-items: center;
+  color: #c8c8c8;
+}
+
+.buyin__value {
+  width: 178px;
+  color: #fff;
+}
+
+.buyin__balance-box {
+  margin: 16px 0;
+  padding: 9px 12px;
+  background: #202228;
+  border-radius: 4px;
+  min-height: 66px;
+}
+
+.buyin__row--small {
+  min-height: 24px;
+
+  span {
+    color: #c8c8c8;
+  }
+
+  strong {
+    width: 178px;
+    font-weight: 400;
+    // color: #fff;
+  }
+}
+
+.buyin__cash {
+  color: #ffd23f;
+}
+
+.buyin__charge {
+  margin: 16px 0 24px;
+}
+
+.buyin__amount,
+.buyin__tables,
+.buyin__actions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.buyin__field.buyin__field--error {
+  border: 1px solid #ff4d4f;
+  box-shadow: 0 0 6px rgba(255, 77, 79, 0.5);
+}
+
+.buyin__green-button,
+.buyin__gray-button,
+.buyin__wide-button {
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  transition:
+    background 0.15s ease,
+    transform 0.08s ease;
+}
+
+.buyin__green-button {
+  height: 40px;
+  min-width: 100px;
+  background: linear-gradient(#22b95c, #12813d);
+
+  &:hover {
+    background: linear-gradient(#35d36f, #159849);
+  }
+
+  &:active {
+    background: linear-gradient(#168d46, #0d6630);
+    transform: translateY(1px);
+  }
+}
+
+.buyin__gray-button,
+.buyin__wide-button {
+  background: linear-gradient(#737a87, #373c46);
+
+  &:hover {
+    background: linear-gradient(#8a92a0, #464c57);
+  }
+
+  &:active {
+    background: linear-gradient(#555c68, #292e36);
+    transform: translateY(1px);
+  }
+}
+
+.buyin__gray-button {
+  height: 40px;
+  min-width: 100px;
+  color: #d6d6d6;
+  font-size: 24px;
+}
+
+.buyin__field {
+  position: relative;
+  width: 140px;
+  height: 40px;
+  border: 1px solid #626872;
+  border-radius: 4px;
+  background: #181a1f;
+
+  span {
+    position: absolute;
+    top: -9px;
+    left: 12px;
+    padding: 0 5px;
+    background: #17191e;
+    color: #8f949d;
+    font-size: 12px;
+  }
+
+  input {
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+  }
+}
+
+.buyin__field--amount::before {
+  content: "$";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.buyin__field--amount input {
+  padding-left: 22px;
+}
+
+.buyin__slider {
+  width: 100%;
+  margin: 24px 0 24px;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    #10b957 0%,
+    #10b957 var(--progress, 50%),
+    #3a3f46 var(--progress, 50%),
+    #3a3f46 100%
+  );
+}
+
+.buyin__slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10b957;
+  border: none;
+  cursor: pointer;
+  margin-top: -1px;
+}
+
+.buyin__slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10b957;
+  border: none;
+  cursor: pointer;
+}
+
+.buyin__wide-button {
+  width: 100%;
+  height: 45px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.buyin__field--tables {
+  flex: 1;
+}
+
+.buyin__gray-button--plus {
+  color: #fff;
+}
+
+.buyin__actions {
+  margin-top: 68px;
+}
+
+.buyin__action {
+  flex: 1;
+  font-size: 16px;
+}
+
+.buyin__icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  background-image: url("../../assets/icn_sprite.png");
+  background-repeat: no-repeat;
+}
+
+.buyin__icon--game {
+  background-position: 0 0;
+}
+
+.buyin__icon--balance {
+  background-position: 0 -20px;
+}
+
+.buyin__icon--charge {
+  background-position: 0 -38px;
+}
+
+.buyin__gray-button:disabled {
+  cursor: default;
+  opacity: 0.45;
+  background: linear-gradient(#343942, #22262d);
+  transform: none;
+}
+
+.buyin__gray-button:disabled:hover,
+.buyin__gray-button:disabled:active {
+  background: linear-gradient(#343942, #22262d);
+  transform: none;
+}
+
+.side-both {
+  display: grid;
+  grid-template-columns: 190px 160px;
+  column-gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.side-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  text-align: left;
+  margin-left: 12px;
+}
+
+.side-right {
+  width: 160px;
+  text-align: left;
+  justify-self: start;
+}
+
+.buyin__balance-box .side-both {
+  grid-template-columns: 178px 160px;
+}
+
+.buyin__row--small > .side-left {
+  margin-left: 0;
+}
+
+@media (max-width: 390px) {
+  .page {
+    padding: 12px;
+  }
+
+  .buyin {
+    max-width: 320px;
+    padding: 16px 14px 18px;
+  }
+
+  .buyin__title {
+    margin-bottom: 22px;
+    font-size: 16px;
+  }
+
+  .buyin__radio-group {
+    // display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .buyin__radio {
+    gap: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .side-both,
+  .buyin__balance-box .side-both {
+    grid-template-columns: 1fr 130px;
+    column-gap: 10px;
+  }
+
+  .side-left {
+    margin-left: 0;
+    font-size: 12px;
+  }
+
+  .buyin__balance-box {
+    padding: 9px 10px;
+  }
+
+  .buyin__amount,
+  .buyin__tables,
+  .buyin__actions {
+    gap: 10px;
+  }
+
+  .buyin__green-button,
+  .buyin__gray-button {
+    min-width: 0;
+    flex: 1;
+    font-size: 12px;
+  }
+
+  .buyin__field {
+    width: 76px;
+  }
+
+  .buyin__field span {
+    font-size: 10px;
+  }
+
+  .buyin__wide-button {
+    font-size: 12px;
+  }
+
+  .buyin__actions {
+    margin-top: 64px;
+  }
+}
